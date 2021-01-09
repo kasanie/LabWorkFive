@@ -8,7 +8,7 @@ namespace LabWorkFive
         {
             int input;
             Console.WriteLine("Введите число:");
-            for(;;)             
+            for (; ; )
             {
                 if (int.TryParse(Console.ReadLine(), out input))
                 {
@@ -20,11 +20,19 @@ namespace LabWorkFive
                     continue;
                 }
             }
-            PrimeOrNot(input);
+            var prime = PrimeOrNot(input);
+            if (prime)
+            {
+                Console.WriteLine("Число " + input + " простое");
+            }
+            else
+            {
+                Console.WriteLine("Число " + input + " не является простым");
+            }
             Console.WriteLine("Вывод на экран простых чисел в диапазоне 0 - " + input + ":");
             AllPrimeNumbers(input);
         }
-        static void PrimeOrNot(int inputNumber)
+        static bool PrimeOrNot(int inputNumber)
         {
             var primeNumber = true;
             int divider;
@@ -36,34 +44,20 @@ namespace LabWorkFive
                     break;
                 }
             }
-            if (primeNumber)
-            {
-                Console.WriteLine("Число " + inputNumber + " простое");
-            }
-            else
-            {
-                Console.WriteLine("Число " + inputNumber + " не является простым");
-            }
+            return primeNumber;
         }
         static void AllPrimeNumbers(int inputNumber)
         {
             for (int allPrimes = 2; allPrimes <= inputNumber; allPrimes++)
             {
-                var primeNumber = true;
-                for (int divider = 2; divider < allPrimes; divider++)
-                {
-                    if (allPrimes % divider == 0)
-                    {
-                        primeNumber = false;
-                        break;
-                    }
-                }
-                if (primeNumber)
+                var prime = PrimeOrNot(allPrimes);
+                if (prime)
                 {
                     Console.Write(allPrimes + " ");
                 }
             }
         }
-
     }
+
+
 }
