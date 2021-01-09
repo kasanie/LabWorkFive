@@ -6,11 +6,11 @@ namespace LabWorkFive
     {
         static void Main(string[] args)
         {
-            int inputNumber;
+            int input;
             Console.WriteLine("Введите число:");
-            for (; ; )
+            for(;;)             
             {
-                if (int.TryParse(Console.ReadLine(), out inputNumber))
+                if (int.TryParse(Console.ReadLine(), out input))
                 {
                     break;
                 }
@@ -20,17 +20,23 @@ namespace LabWorkFive
                     continue;
                 }
             }
-            var isPrimeNumber = true;
+            PrimeOrNot(input);
+            Console.WriteLine("Вывод на экран простых чисел в диапазоне 0 - " + input + ":");
+            AllPrimeNumbers(input);
+        }
+        static void PrimeOrNot(int inputNumber)
+        {
+            var primeNumber = true;
             int divider;
             for (divider = 2; divider < inputNumber; divider++)
             {
                 if (inputNumber % divider == 0)
                 {
-                    isPrimeNumber = false;
+                    primeNumber = false;
                     break;
                 }
             }
-            if (isPrimeNumber)
+            if (primeNumber)
             {
                 Console.WriteLine("Число " + inputNumber + " простое");
             }
@@ -38,24 +44,26 @@ namespace LabWorkFive
             {
                 Console.WriteLine("Число " + inputNumber + " не является простым");
             }
-            Console.WriteLine("Вывод на экран простых чисел в диапазоне 0 - " + inputNumber + ":");
-            int allPrimeNumbers;
-            for (allPrimeNumbers = 2; allPrimeNumbers <= inputNumber; allPrimeNumbers++)
+        }
+        static void AllPrimeNumbers(int inputNumber)
+        {
+            for (int allPrimes = 2; allPrimes <= inputNumber; allPrimes++)
             {
-                isPrimeNumber = true;
-                for (divider = 2; divider < allPrimeNumbers; divider++)
+                var primeNumber = true;
+                for (int divider = 2; divider < allPrimes; divider++)
                 {
-                    if (allPrimeNumbers % divider == 0)
+                    if (allPrimes % divider == 0)
                     {
-                        isPrimeNumber = false;
+                        primeNumber = false;
                         break;
                     }
                 }
-                if (isPrimeNumber)
+                if (primeNumber)
                 {
-                    Console.Write(allPrimeNumbers + " ");
+                    Console.Write(allPrimes + " ");
                 }
             }
         }
+
     }
 }
